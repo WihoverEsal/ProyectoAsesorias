@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.*;
 import modelo.Usuario;
+import rolprofesor.RProfesor;
 
 public class Login extends Application {
 
@@ -47,6 +48,7 @@ public class Login extends Application {
     HashMap<Integer, String> hsPasswords;
     //HashMap<Integer, Usuario> hsUsuarios;
     Alumno al  = new Alumno();
+    RProfesor rProf = new RProfesor();
     
     ArrayList<String> alPasswords = new ArrayList<>();
     ArrayList<String> alUsers = new ArrayList<>();
@@ -170,7 +172,7 @@ public class Login extends Application {
                     try {                        
                         System.out.println("hash del password: " + psfPass.getText().hashCode());
                         if( verificaUser(txtUsuario.getText()) == 1 ){
-                            verificarPass(escenario);
+                            verificarPass(escenario,txtUsuario.getText());
                         }else{
                             lblRespuesta.setText("Usuario no encontrado\nRegistrate");
                         }                        
@@ -201,9 +203,12 @@ public class Login extends Application {
         escenario.show();
     }
 
-    public void verificarPass(Stage stage) throws Exception {
+    public void verificarPass(Stage stage, String usuario) throws Exception {
         if ( hsPasswords.containsKey(psfPass.getText().hashCode()) ) {
-            al.start(stage);
+            if(usuario.length() == 10)
+                al.start(stage);
+            else   
+                rProf.start(stage);
         } else {
             System.out.println("Contraseña Incorrecta");
             lblRespuesta.setText("Contraseña Incorrecta");
