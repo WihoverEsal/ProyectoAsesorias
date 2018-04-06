@@ -45,13 +45,15 @@ public class RProfesor extends Application {
                 alProfUser.add(alUser.get(i));//Lleno el arraylist solo de profesores
             }
         }
-
+        
+        int elemento=0;
         String eco = log.getNEco();
         if (eco.length() == 5) {
             for (int i = 0; i < alProfUser.size(); i++) {
                 if(alProfUser.get(i).getIdentificador().equals(eco)){
                     lblNombre.setText(alProfUser.get(i).getNombre());
                     lblEco.setText(alProfUser.get(i).getIdentificador());
+                    elemento = i;
                 }
                 /*switch(alProfUser.get(i).getNombre()) {
                     case "Martha Mora Torres":
@@ -97,8 +99,8 @@ public class RProfesor extends Application {
             }
         }
 
-        lblNombre.setText("Nombre: " + alProfUser.get(1).getNombre());
-        lblEco.setText("No. Economico: " + alProfUser.get(1).getIdentificador());
+        lblNombre.setText("Nombre: " + alProfUser.get(elemento).getNombre());
+        lblEco.setText("No. Economico: " + alProfUser.get(elemento).getIdentificador());
         lblCubo.setText("Cubiculo: " + cubo);
 
         VBox vbDatos = new VBox(10);
