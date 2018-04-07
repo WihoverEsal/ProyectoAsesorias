@@ -29,6 +29,8 @@ import rolprofesor.RProfesor;
 
 public class Login extends Application {
 
+    String neco;    
+    
     TextField txtUsuario;
     PasswordField psfPass;
     Label lblOlvidar;
@@ -46,9 +48,9 @@ public class Login extends Application {
     VBox vbAllHB;
 
     HashMap<Integer, String> hsPasswords;
-    //HashMap<Integer, Usuario> hsUsuarios;
+    HashMap<Integer, Usuario> hsUsuarios;
     Alumno al  = new Alumno();
-    RProfesor rProf = new RProfesor();
+    //RProfesor rProf = new RProfesor();
     
     ArrayList<String> alPasswords = new ArrayList<>();
     ArrayList<String> alUsers = new ArrayList<>();
@@ -144,35 +146,53 @@ public class Login extends Application {
         vbAllHB.setAlignment(Pos.CENTER);
         
         alPasswords.add("2153001419");
-        alPasswords.add("2153035791");               
+        alPasswords.add("2153035791");
 
-        hsPasswords = new HashMap<Integer, String>();
+        /*hsPasswords = new HashMap<Integer, String>();
         for (int i = 0; i < alPasswords.size(); i++) {
             hsPasswords.put(alPasswords.get(i).hashCode(), alPasswords.get(i));
-        }
-        
-        /*
-        //Usando el Objeto de Usuario
-        for (int i = 0; i < alPasswords.size(); i++){
-            hsPasswords.put(alUsuario.get(i).getClavePass().hashCode(), alUsuario.get(i).getClavePass());
         }*/
         
-        /*
+        System.out.println(alUsuario.size());
+        for(int i = 0 ; i < alUsuario.size() ; i++){
+            System.out.println(alUsuario.get(i).getNombre() + " " + alUsuario.get(i).getIdentificador() + " " + alUsuario.get(i).getClavePass());
+        }
+        //Usando el Objeto de Usuario
+        hsPasswords = new HashMap<Integer, String>();
+        for (int i = 0; i < alUsuario.size(); i++){
+            hsPasswords.put(alUsuario.get(i).getClavePass().hashCode(), alUsuario.get(i).getClavePass());
+        }
+        
+        
         //Con Objetos
-        hsUsuarios = new HashMap<Integer, Usuario>();
+        /*hsUsuarios = new HashMap<Integer, Usuario>();
         for (int i = 0; i < alUsuario.size(); i++){
             hsUsuarios.put(alUsuario.get(i).hashCode(), alUsuario.get(i));
         }*/
-
+                
         btnIniciar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //al = new Alumno();
-                if (txtUsuario.getText().length() == 10 && psfPass.getText().length() > 7) {
-                    try {                        
+                Usuario usuario = new Usuario();                
+                for(int i = 0 ; i < alUsuario.size() ; i++){
+                    if(alUsuario.get(i).getIdentificador().equalsIgnoreCase( txtUsuario.getText() )){
+                        /*usuario.setIdentificador( alUsuario.get(i).getIdentificador() );
+                        usuario.setClavePass( alUsuario.get(i).getClavePass());
+                        usuario.setNombre( alUsuario.get(i).getNombre() );*/
+                        
+                        usuario = alUsuario.get(i);
+                        System.out.println(alUsuario.get(i).getNombre() + " " + alUsuario.get(i).getIdentificador() + " " + alUsuario.get(i).getClavePass());
+                        
+                    }
+                }
+                if(usuario.getIdentificador().length() == 10 && usuario.getClavePass().length() > 7 ){
+                //if (txtUsuario.getText().length() == 10 && psfPass.getText().length() > 7) {
+                    try {
                         System.out.println("hash del password: " + psfPass.getText().hashCode());
-                        if( verificaUser(txtUsuario.getText()) == 1 ){
-                            verificarPass(escenario,txtUsuario.getText());
+                        if( verificarUser(usuario) == 1 ){
+                        //if( verificaUser(txtUsuario.getText()) == 1 ){
+                            //verificaPass(escenario,usuario.getIdentificador());
+                            verificarPass(escenario, usuario);
                         }else{
                             lblRespuesta.setText("Usuario no encontrado\nRegistrate");
                         }                        
@@ -180,12 +200,21 @@ public class Login extends Application {
                     } catch (Exception ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else if (txtUsuario.getText().length() == 5 && psfPass.getText().length() > 7) {
+                } else if( usuario.getIdentificador().length() == 5 && usuario.getClavePass().length() > 7){
+                    //else if (txtUsuario.getText().length() == 5 && psfPass.getText().length() > 7) {
                     //Llevarlo a pantalla de profesor
-                    if( verificaUser(txtUsuario.getText()) == 1 ){
-                        
-                    }else{
-                        lblRespuesta.setText("Usuario no encontrado\nRegistrate");
+                    setNEco(txtUsuario.getText());
+                    try{
+                        if( verificarUser(usuario) == 1){
+                        //if( verificaUser( txtUsuario.getText() ) == 1 ){
+                            //System.out.println(txtUsuario.getText());
+                            //verificaPass(escenario, usuario.getIdentificador());
+                            verificarPass(escenario, usuario);
+                        }else{
+                            lblRespuesta.setText("Usuario no encontrado\nRegistrate");
+                        }
+                    }catch(Exception ex){
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     //System.out.println("No es alumno");
                 } else {
@@ -203,23 +232,43 @@ public class Login extends Application {
         escenario.show();
     }
 
-    public void verificarPass(Stage stage, String usuario) throws Exception {
+    public void verificaPass(Stage stage, String usuario) throws Exception {
+        RProfesor rProf = new RProfesor( getNEco() );
         if ( hsPasswords.containsKey(psfPass.getText().hashCode()) ) {
             if(usuario.length() == 10)
                 al.start(stage);
-            else   
+            else
                 rProf.start(stage);
         } else {
             System.out.println("Contraseña Incorrecta");
             lblRespuesta.setText("Contraseña Incorrecta");
         }
     }
-    
+    public void verificarPass(Stage stage, Usuario usuario) throws Exception{
+        //RProfesor rProf = new RProfesor( getNEco() );
+        RProfesor rProf = new RProfesor(getNEco(), alUsuario );
+        if( hsPasswords.containsKey( usuario.getClavePass().hashCode() )){
+            if(usuario.getIdentificador().length() == 10)
+                al.start(stage);
+            else
+                rProf.start(stage);
+        } else {
+            System.out.println("Contraseña Incorrecta");
+            lblRespuesta.setText("Contraseña Incorrecta");
+        }
+    }
     public int verificaUser(String usuario){
         if( alUsers.contains(usuario) ){//Si el HashMap de usuarios contiene el Usuario usuario
             return 1;
-       }        
-        return 0;            
+        }
+        return 0;
+    }
+    
+    public int verificarUser(Usuario usuario){
+        if(alUsuario.contains(usuario)){
+            return 1;
+        }
+        return 0;
     }
     
     public int addPassUser(String usuario, String pass){
@@ -239,7 +288,7 @@ public class Login extends Application {
             System.out.println("Usuario existente");
             return 0;
         }else{
-            alUsuario.add(usuario);            
+            alUsuario.add(usuario);
         }
         return 1;
     }
@@ -247,10 +296,15 @@ public class Login extends Application {
     public ArrayList getUsers(){
         return alUsuario;
     }
-    
+    /*public void setUsers(ArrayList alUsuario){
+        this.alUsuario = alUsuario;
+    }*/
+        
     public String getNEco(){
-        return txtUsuario.getText();
+        return neco;
     }
-
+    public void setNEco(String neco){
+        this.neco = neco;        
+    }
 }
 

@@ -155,9 +155,11 @@ public class Registrate extends Application {
             
             
             if ((mobnot.getText().length() == 10 || mobnot.getText().length() == 5) && pwdt.getText().length() > 7) {                
-                //Usuario usuario = new Usuario( namet.getText(), mobnot.getText(), pwdt.getText() );
-                //if( log.addUser(usuario) )
-                if (log.addPassUser(matricula, contraseña) == 1)  {                                        
+                Usuario usuario = new Usuario( namet.getText(), mobnot.getText(), pwdt.getText() );
+                if( log.addUser(usuario) == 1){
+                //if (log.addPassUser(matricula, contraseña) == 1)  {                                        
+                    System.out.println("Usuario agregado: " + usuario.getIdentificador() + " " + usuario.getClavePass() + 
+                            " " + usuario.getNombre());
                     try {
                         log.start(escenario);
                         //Stage stage = (Stage) submit.getScene().getWindow();

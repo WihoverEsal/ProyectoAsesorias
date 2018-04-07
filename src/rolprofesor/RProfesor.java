@@ -20,7 +20,20 @@ import proyectoasesorias.Login;
  * @author Victor Estupiñan
  */
 public class RProfesor extends Application {
-
+    
+    String eco;
+    ArrayList<Usuario> alUsuario;
+    public RProfesor(){
+        
+    }
+    public RProfesor(String eco){
+        this.eco = eco;
+    }
+    public RProfesor(String eco, ArrayList<Usuario> alUsuario){
+        this.eco = eco;
+        this.alUsuario = alUsuario;
+    }
+    
     @Override
     public void start(Stage escenario) throws Exception {
         escenario.setTitle("Profesor");
@@ -31,81 +44,83 @@ public class RProfesor extends Application {
 
         escenario.setScene(escena);
 
-        String cubo = null;
+        String cubo = "224";
         Label lblNombre = new Label();
         Label lblEco = new Label();
         Label lblCubo = new Label();
 
         Login log = new Login();
-        ArrayList<Usuario> alUser = log.getUsers();
+        //ArrayList<Usuario> alUser = log.getUsers();
         ArrayList<Usuario> alProfUser = new ArrayList();
 
-        for (int i = 0; i < alUser.size(); i++) {
-            if (alUser.get(i).getIdentificador().length() == 5) {
-                alProfUser.add(alUser.get(i));//Lleno el arraylist solo de profesores
+        for (int i = 0; i < alUsuario.size(); i++) {
+            if (alUsuario.get(i).getIdentificador().length() == 5) {
+                alProfUser.add(alUsuario.get(i));//Lleno el arraylist solo de profesores
             }
         }
-        
-        int elemento=0;
-        String eco = log.getNEco();
+                   
+        System.out.println("Tamaño del AL de profes: " + alProfUser.size() + "\nTamaño del AL Ususarios: " + alUsuario.size());
         if (eco.length() == 5) {
             for (int i = 0; i < alProfUser.size(); i++) {
                 if(alProfUser.get(i).getIdentificador().equals(eco)){
-                    lblNombre.setText(alProfUser.get(i).getNombre());
-                    lblEco.setText(alProfUser.get(i).getIdentificador());
-                    elemento = i;
-                }
-                /*switch(alProfUser.get(i).getNombre()) {
-                    case "Martha Mora Torres":
-                        cubo = "";
-                        break;
-                    case "Francisco Javier Zaragoza Martinez":
-                        cubo = "H-264";
-                        break;
-                    case "Lourdes Sanchez Guerrero":
-                        cubo = "H-262";
-                        break;
-                    case "Josue Figueroa Gonzalez":
-                        cubo = "H-293";
-                        break;
-                    case "Alejandro Cruz Sandoval":
-                        cubo = "H-295";
-                        break;
-                    case "Hugo Pablo Leyva":
-                        cubo = "HP-7";
-                        break;
-                    case "Marco A. Gutiérrez Villegas":
-                        cubo = "H-295";
-                        break;
-                    case "Rodrigo Alexander Castro Campos":
-                        cubo = "HP-11";
-                        break;
-                    case "Irma Fernanda Ardon Pulido":
-                        cubo = "HP-6";
-                        break;
-                    case "Oscar Alvarado Nava":
-                        cubo = "G-301";
-                        break;                       
-                    case "Eduardo Rodriguez Martinez":
-                        cubo = "G-312";
-                        break;
-                    case "Oscar Herrera Alcántara":
-                        cubo = "H-255";
-                        break;
-                    case "Lizbeth Gallardo López":
-                        cubo = "H-244";
-                        break;
-                } */                                                                                                                               
+                    lblNombre.setText("Nombre: " + alProfUser.get(i).getNombre());
+                    lblEco.setText("No. Eco: " + alProfUser.get(i).getIdentificador());                    
+                    //elemento = i;
+                    switch(alProfUser.get(i).getNombre()) {
+                        case "Martha Mora Torres":
+                            cubo = "H-263";
+                            break;
+                        case "Francisco Javier Zaragoza Martinez":
+                            cubo = "H-264";
+                            break;
+                        case "Lourdes Sanchez Guerrero":
+                            cubo = "H-262";
+                            break;
+                        case "Josue Figueroa Gonzalez":
+                            cubo = "H-293";
+                            break;
+                        case "Alejandro Cruz Sandoval":
+                            cubo = "H-295";
+                            break;
+                        case "Hugo Pablo Leyva":
+                            cubo = "HP-7";
+                            break;
+                        case "Marco A. Gutiérrez Villegas":
+                            cubo = "H-295";
+                            break;
+                        case "Rodrigo Alexander Castro Campos":
+                            cubo = "HP-11";
+                            break;
+                        case "Irma Fernanda Ardon Pulido":
+                            cubo = "HP-6";
+                            break;
+                        case "Oscar Alvarado Nava":
+                            cubo = "G-301";
+                            break;                       
+                        case "Eduardo Rodriguez Martinez":
+                            cubo = "G-312";
+                            break;
+                        case "Oscar Herrera Alcántara":
+                            cubo = "H-255";
+                            break;
+                        case "Lizbeth Gallardo López":
+                            cubo = "H-244";
+                            break;
+                    }
+                    lblCubo.setText("Cubiculo: " + cubo);
+                }                                                                                                                                               
             }
         }
 
-        lblNombre.setText("Nombre: " + alProfUser.get(elemento).getNombre());
-        lblEco.setText("No. Economico: " + alProfUser.get(elemento).getIdentificador());
-        lblCubo.setText("Cubiculo: " + cubo);
+        //lblNombre.setText("Nombre: " + alProfUser.get(elemento).getNombre());
+        //lblEco.setText("No. Economico: " + alProfUser.get(elemento).getIdentificador());
+        //lblCubo.setText("Cubiculo: " + cubo);
 
         VBox vbDatos = new VBox(10);
         vbDatos.getChildren().addAll(lblNombre, lblEco, lblCubo);
-
+        
+        raiz.getChildren().add(vbDatos);
+        escenario.show();
     }
 
 }
