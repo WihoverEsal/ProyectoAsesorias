@@ -9,6 +9,7 @@ package proyectoasesorias;
  *
  * @author Victor EstupiÃ±an
  */
+import fachadabd.FachadaBD;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -152,14 +153,27 @@ public class Registrate extends Application {
             String contraseña = pwdt.getText();
 
             Login log = new Login();
-            
+            FachadaBD f = new FachadaBD();
             
             if ((mobnot.getText().length() == 10 || mobnot.getText().length() == 5) && pwdt.getText().length() > 7) {                
                 Usuario usuario = new Usuario( namet.getText(), mobnot.getText(), pwdt.getText() );
-                if( log.addUser(usuario) == 1){
-                //if (log.addPassUser(matricula, contraseña) == 1)  {                                        
+                //if( log.addUser(usuario) == 1){
+                //if (log.addPassUser(matricula, contraseña) == 1)  {
+                f.connectToAndQueryDatabase("DBProyecto.db");
+                if( f.EjecutaSQL("select id from Tusuarios where id = '" + usuario.getIdentificador() + "' ") == true){ //Si el usuario esta en la base de datos mandarle alerta
+                    Alert hola = new Alert(AlertType.ERROR);
+                    hola.setTitle("error");
+                    hola.setHeaderText("usuario existente");
+                    hola.setContentText(null);
+                    hola.showAndWait();
+                    mobnot.clear();
+                }else{//Si el usuario no esta en la base de datos lo agrego                    
+                    f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values ('"+ usuario.getIdentificador() +"', "
+                        + "'"+ usuario.getNombre() + "', "
+                        + "'" + usuario.getClavePass() +"');");
+                    
                     System.out.println("Usuario agregado: " + usuario.getIdentificador() + " " + usuario.getClavePass() + 
-                            " " + usuario.getNombre());
+                        " " + usuario.getNombre());
                     try {
                         log.start(escenario);
                         //Stage stage = (Stage) submit.getScene().getWindow();
@@ -169,14 +183,15 @@ public class Registrate extends Application {
                     } catch (Exception ex) {
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else {
-                    Alert hola = new Alert(AlertType.ERROR);
-                    hola.setTitle("error");
-                    hola.setHeaderText("usuario existente");
-                    hola.setContentText(null);
-                    hola.showAndWait();
-                    mobnot.clear();
                 }
+                //} else {
+                //    Alert hola = new Alert(AlertType.ERROR);
+                //    hola.setTitle("error");
+                //    hola.setHeaderText("usuario existente");
+                //    hola.setContentText(null);
+                //    hola.showAndWait();
+                //    mobnot.clear();
+                //}
             } else {
                 Alert hola = new Alert(AlertType.WARNING);
                 hola.setTitle("error");

@@ -5,7 +5,11 @@
  */
 package rolprofesor;
 
+import fachadabd.FachadaBD;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -49,24 +53,16 @@ public class RProfesor extends Application {
         Label lblEco = new Label();
         Label lblCubo = new Label();
 
-        Login log = new Login();
-        //ArrayList<Usuario> alUser = log.getUsers();
-        ArrayList<Usuario> alProfUser = new ArrayList();
-
-        for (int i = 0; i < alUsuario.size(); i++) {
-            if (alUsuario.get(i).getIdentificador().length() == 5) {
-                alProfUser.add(alUsuario.get(i));//Lleno el arraylist solo de profesores
-            }
-        }
-                   
-        System.out.println("Tamaño del AL de profes: " + alProfUser.size() + "\nTamaño del AL Ususarios: " + alUsuario.size());
-        if (eco.length() == 5) {
-            for (int i = 0; i < alProfUser.size(); i++) {
-                if(alProfUser.get(i).getIdentificador().equals(eco)){
-                    lblNombre.setText("Nombre: " + alProfUser.get(i).getNombre());
-                    lblEco.setText("No. Eco: " + alProfUser.get(i).getIdentificador());                    
-                    //elemento = i;
-                    switch(alProfUser.get(i).getNombre()) {
+        Login log = new Login();        
+        FachadaBD f = new FachadaBD();
+        f.connectToAndQueryDatabase("DBProyecto.db");
+        try{
+            ResultSet rs = f.ejecutaSQLreturnRS("select id, nombre, pass from Tusuarios");            
+            while(rs.next()){
+                if(rs.getString(1).equalsIgnoreCase(eco) ){
+                    lblNombre.setText("Nombre: " + rs.getString(2));
+                    lblEco.setText("No. Eco: " + rs.getString(1));
+                    switch(rs.getString(2)){
                         case "Martha Mora Torres":
                             cubo = "H-263";
                             break;
@@ -105,16 +101,14 @@ public class RProfesor extends Application {
                             break;
                         case "Lizbeth Gallardo López":
                             cubo = "H-244";
-                            break;
+                            break;                    
                     }
-                    lblCubo.setText("Cubiculo: " + cubo);
-                }                                                                                                                                               
+                    lblCubo.setText("Cubiculo: " + cubo);                
+                }
             }
+        }catch(SQLException ex){
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        //lblNombre.setText("Nombre: " + alProfUser.get(elemento).getNombre());
-        //lblEco.setText("No. Economico: " + alProfUser.get(elemento).getIdentificador());
-        //lblCubo.setText("Cubiculo: " + cubo);
 
         VBox vbDatos = new VBox(10);
         vbDatos.getChildren().addAll(lblNombre, lblEco, lblCubo);

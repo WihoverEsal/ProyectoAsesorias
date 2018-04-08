@@ -8,6 +8,9 @@ package proyectoasesorias;
  *
  * @author Victor Estupiñan
  */
+import fachadabd.FachadaBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.*;
 import java.util.logging.*;
@@ -55,18 +58,22 @@ public class Login extends Application {
     ArrayList<String> alPasswords = new ArrayList<>();
     ArrayList<String> alUsers = new ArrayList<>();
     ArrayList<Usuario> alUsuario = new ArrayList<>();
+    
+    FachadaBD f = new FachadaBD();
 
     public static void main(String[] args) {
         launch(args);
     }
     
     public Login() {        
-        this.alUsers.add("2153001419");
-        this.alUsers.add("2153035791");
+        //this.alUsers.add("2153001419");
+        //this.alUsers.add("2153035791");
     }       
 
     @Override
     public void start(Stage escenario) throws Exception {
+        
+        
         escenario.setTitle("Iniciar Sesion");
 
         FlowPane raiz = new FlowPane(10, 10);
@@ -153,15 +160,15 @@ public class Login extends Application {
             hsPasswords.put(alPasswords.get(i).hashCode(), alPasswords.get(i));
         }*/
         
-        System.out.println(alUsuario.size());
+        /*System.out.println(alUsuario.size());
         for(int i = 0 ; i < alUsuario.size() ; i++){
             System.out.println(alUsuario.get(i).getNombre() + " " + alUsuario.get(i).getIdentificador() + " " + alUsuario.get(i).getClavePass());
-        }
+        }*/
         //Usando el Objeto de Usuario
-        hsPasswords = new HashMap<Integer, String>();
+        /*hsPasswords = new HashMap<Integer, String>();
         for (int i = 0; i < alUsuario.size(); i++){
             hsPasswords.put(alUsuario.get(i).getClavePass().hashCode(), alUsuario.get(i).getClavePass());
-        }
+        }*/
         
         
         //Con Objetos
@@ -172,56 +179,55 @@ public class Login extends Application {
                 
         btnIniciar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                Usuario usuario = new Usuario();                
-                for(int i = 0 ; i < alUsuario.size() ; i++){
-                    if(alUsuario.get(i).getIdentificador().equalsIgnoreCase( txtUsuario.getText() )){
-                        /*usuario.setIdentificador( alUsuario.get(i).getIdentificador() );
-                        usuario.setClavePass( alUsuario.get(i).getClavePass());
-                        usuario.setNombre( alUsuario.get(i).getNombre() );*/
-                        
-                        usuario = alUsuario.get(i);
-                        System.out.println(alUsuario.get(i).getNombre() + " " + alUsuario.get(i).getIdentificador() + " " + alUsuario.get(i).getClavePass());
-                        
-                    }
-                }
-                if(usuario.getIdentificador().length() == 10 && usuario.getClavePass().length() > 7 ){
-                //if (txtUsuario.getText().length() == 10 && psfPass.getText().length() > 7) {
-                    try {
-                        System.out.println("hash del password: " + psfPass.getText().hashCode());
-                        if( verificarUser(usuario) == 1 ){
-                        //if( verificaUser(txtUsuario.getText()) == 1 ){
-                            //verificaPass(escenario,usuario.getIdentificador());
-                            verificarPass(escenario, usuario);
+            public void handle(ActionEvent event) {                
+                Usuario usuario = new Usuario();
+                boolean bandera = false;
+                f.connectToAndQueryDatabase("DBProyecto.db");//Conexion a la BD
+                
+                try {
+                    ResultSet rs = f.ejecutaSQLreturnRS("select id, nombre, pass from Tusuarios");
+                    while (rs.next()) {
+                        if( rs.getString(1).equalsIgnoreCase( txtUsuario.getText() ) ){
+                            usuario.setIdentificador( rs.getString(1) );
+                            usuario.setNombre( rs.getString(2) );
+                            usuario.setClavePass( rs.getString(3) );
+                            bandera = true;
+                            
+                            System.out.println(usuario.getIdentificador() + " " + usuario.getNombre() + " " + usuario.getClavePass());
+                            break;
                         }else{
-                            lblRespuesta.setText("Usuario no encontrado\nRegistrate");
-                        }                        
-                        //escenario.close();
-                    } catch (Exception ex) {
-                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } else if( usuario.getIdentificador().length() == 5 && usuario.getClavePass().length() > 7){
-                    //else if (txtUsuario.getText().length() == 5 && psfPass.getText().length() > 7) {
-                    //Llevarlo a pantalla de profesor
-                    setNEco(txtUsuario.getText());
-                    try{
-                        if( verificarUser(usuario) == 1){
-                        //if( verificaUser( txtUsuario.getText() ) == 1 ){
-                            //System.out.println(txtUsuario.getText());
-                            //verificaPass(escenario, usuario.getIdentificador());
-                            verificarPass(escenario, usuario);
-                        }else{
-                            lblRespuesta.setText("Usuario no encontrado\nRegistrate");
+                            bandera = false;
                         }
-                    }catch(Exception ex){
-                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                        //System.out.println("id= " + rs.getString(1) + " nombre = " + rs.getString(2) + " pass = " + rs.getString(3));
                     }
-                    //System.out.println("No es alumno");
-                } else {
-                    System.out.println("Verificar usuario y/o contraseña");
-                    lblRespuesta.setText("Verificar usuario y/o contraseña");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println("Ususario -> " + txtUsuario.getText() + " Password -> " + psfPass.getText());
+                //System.out.println(bandera);
+                if( (usuario.getIdentificador().length() == 10 || usuario.getIdentificador().length() == 5) && usuario.getClavePass().length() > 7 ){
+                //if (txtUsuario.getText().length() == 10 && psfPass.getText().length() > 7) {
+                setNEco(usuario.getIdentificador());
+                RProfesor rProf = new RProfesor( getNEco() );                    
+                try {
+                    //System.out.println("hash del password: " + psfPass.getText().hashCode());
+                    if( bandera == true ){                  
+                        if(usuario.getIdentificador().length() == 10){
+                            al.start(escenario);
+                        }else{
+                            rProf.start(escenario);
+                        }
+                    }else{
+                        lblRespuesta.setText("Usuario no encontrado\nRegistrate");
+                    }
+                    //escenario.close();
+                } catch (Exception ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                //System.out.println("Verificar usuario y/o contraseña");
+                lblRespuesta.setText("Verificar usuario y/o contraseña");
+            }
+            //System.out.println("Ususario -> " + txtUsuario.getText() + " Password -> " + psfPass.getText());
             }
         });
 
@@ -232,7 +238,7 @@ public class Login extends Application {
         escenario.show();
     }
 
-    public void verificaPass(Stage stage, String usuario) throws Exception {
+    /*public void verificaPass(Stage stage, String usuario) throws Exception {
         RProfesor rProf = new RProfesor( getNEco() );
         if ( hsPasswords.containsKey(psfPass.getText().hashCode()) ) {
             if(usuario.length() == 10)
@@ -243,10 +249,10 @@ public class Login extends Application {
             System.out.println("Contraseña Incorrecta");
             lblRespuesta.setText("Contraseña Incorrecta");
         }
-    }
-    public void verificarPass(Stage stage, Usuario usuario) throws Exception{
-        //RProfesor rProf = new RProfesor( getNEco() );
-        RProfesor rProf = new RProfesor(getNEco(), alUsuario );
+    }*/
+    /*public void verificarPass(Stage stage, Usuario usuario) throws Exception{
+        RProfesor rProf = new RProfesor( );
+        //RProfesor rProf = new RProfesor(getNEco(), alUsuario );
         if( hsPasswords.containsKey( usuario.getClavePass().hashCode() )){
             if(usuario.getIdentificador().length() == 10)
                 al.start(stage);
@@ -256,22 +262,22 @@ public class Login extends Application {
             System.out.println("Contraseña Incorrecta");
             lblRespuesta.setText("Contraseña Incorrecta");
         }
-    }
-    public int verificaUser(String usuario){
+    }*/
+    /*public int verificaUser(String usuario){
         if( alUsers.contains(usuario) ){//Si el HashMap de usuarios contiene el Usuario usuario
             return 1;
         }
         return 0;
-    }
+    }*/
     
-    public int verificarUser(Usuario usuario){
+    /*public int verificarUser(Usuario usuario){
         if(alUsuario.contains(usuario)){
             return 1;
         }
         return 0;
-    }
+    }*/
     
-    public int addPassUser(String usuario, String pass){
+    /*public int addPassUser(String usuario, String pass){
         if( alUsers.contains(usuario) ){
             System.out.println("Usuario existente");
             return 0;
@@ -280,10 +286,10 @@ public class Login extends Application {
             alPasswords.add(pass);
         }
         return 1;
-    }
+    }*/
     
     //Con objetos
-    public int addUser(Usuario usuario){
+    /*public int addUser(Usuario usuario){
         if( alUsuario.contains(usuario) ){
             System.out.println("Usuario existente");
             return 0;
@@ -291,11 +297,11 @@ public class Login extends Application {
             alUsuario.add(usuario);
         }
         return 1;
-    }
+    }*/
     
-    public ArrayList getUsers(){
+    /*public ArrayList getUsers(){
         return alUsuario;
-    }
+    }*/
     /*public void setUsers(ArrayList alUsuario){
         this.alUsuario = alUsuario;
     }*/
