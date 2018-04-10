@@ -22,17 +22,17 @@ public class UsersDefault {
         try {
             FachadaBD f = new FachadaBD();
             f.connectToAndQueryDatabase("DBProyecto.db");
-            /*f.EjecutaSQL("DROP TABLE Tusuarios");            
+            f.EjecutaSQL("DROP TABLE Tusuarios");            
             String sql= " CREATE TABLE Tusuarios(\n"
                     + " id text PRIMARY KEY,\n"
                     + " nombre text NOT NULL,\n"
                     + " pass text NOT NULL\n"
                     + ");";
             f.EjecutaSQL(sql);            
-            
-            f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('2153001419', 'Victor Estupiñan', '2153001419');");
+            //usuarios ya registrados de esta parte
+           f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('2153001419', 'Victor Estupiñan', '2153001419');");
             f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('2153035791', 'Fabian Galicia', '2153035791');");
-            f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('12345', 'Martha Mora Torres', '12345678');");*/
+            f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('12345', 'Martha Mora Torres', '12345678');");
 
             ResultSet rs = f.ejecutaSQLreturnRS("select id, nombre, pass  from Tusuarios ");
             while (rs.next()) {

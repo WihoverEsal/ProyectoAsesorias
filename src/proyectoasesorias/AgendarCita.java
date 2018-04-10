@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package proyectoasesorias;
-
+/* esta era la parte que estabamos haciendo yo y victor para cargar un archivo pero no lo vamos a ocupar por lo mientras
 import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -13,20 +13,18 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import modelo.*;
 
-/**
- *
- * @author Victor Estupiñan
- */
+
 public class AgendarCita {
         
     public static DataInputStream dis;
-    public static String ruta = "C:\\Users\\Victor Estupiñan\\Documents\\NetBeansProjects\\ProyectoAsesorias\\HorasAsesoria.txt";                
+    //mi ruta que manejo /Users/fabianzacate/Documents/pvo brambila/ProyectoAsesorias
+    public static String ruta = "/Users/fabianzacate/Documents/pvo brambila/ProyectoAsesorias/HorasAsesoria.txt";                
     
     /*@Override
     public void start(Stage primaryStage) throws Exception {
                 
         
-    }*/
+    }
     
     public static void main(String[] args) throws FileNotFoundException, IOException {
         String indice ,hora ;
@@ -91,3 +89,4 @@ public class AgendarCita {
     }
     
 }
+*/

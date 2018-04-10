@@ -166,7 +166,7 @@ public class Registrate extends Application {
                     hola.setHeaderText("usuario existente");
                     hola.setContentText(null);
                     hola.showAndWait();
-                    mobnot.clear();
+                    pwdt.clear();
                 }else{//Si el usuario no esta en la base de datos lo agrego                    
                     f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values ('"+ usuario.getIdentificador() +"', "
                         + "'"+ usuario.getNombre() + "', "

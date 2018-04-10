@@ -7,35 +7,37 @@ package modelo;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author lgarcia
- */
+
 public class Agenda {
-
-    private ArrayList<DiaAsesoria> agenda;
-
-    public Agenda() {
-        agenda = new ArrayList<>();
-    }
-
-    public Agenda(ArrayList<DiaAsesoria> agenda) {
-        this();
-        this.agenda = agenda;
-    }        
     
-    /**
-     * @return the agenda
-     */
-    public ArrayList<DiaAsesoria> getAgenda() {
-        return agenda;
+    private ArrayList<String> diasAs;
+    private ArrayList<HoraAsesoria> horasAs;
+    
+    public Agenda(){
+        diasAs = new ArrayList<>();
+        horasAs = new ArrayList<>();
     }
-
-    /**
-     * @param agenda the agenda to set
-     */
-    public void setAgenda(ArrayList<DiaAsesoria> agenda) {
-        this.agenda = agenda;
+    
+    public Agenda(ArrayList<String> diasAs, ArrayList<HoraAsesoria> horasAs){
+        this.diasAs = diasAs;
+        this.horasAs = horasAs;
     }
-
+    
+    
+    public void addDia(String dia){
+        diasAs.add(dia);
+    }
+    
+    public void addHora(HoraAsesoria hora){
+        horasAs.add(hora);
+    }
+    
+    public ArrayList<String> getDias(){
+        return diasAs;
+    }
+    
+    public ArrayList<HoraAsesoria> getHoras(){
+        return horasAs;
+    }
+    
 }
