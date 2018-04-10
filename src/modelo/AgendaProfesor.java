@@ -817,6 +817,7 @@ public class AgendaProfesor extends Application{
                         }
                         break;
                     case 5:
+                        System.out.println("");
                         System.out.println("Enviar notificacion");
                         if(projEntradas.get(0).getViernes().equalsIgnoreCase("Asesoria")){
                             System.out.println("Enviar notificacion");
