@@ -776,55 +776,27 @@ public class AgendaProfesor extends Application{
         tvProyecto.setPrefWidth(430); 
         tvProyecto.setPrefHeight(305); 
         
-        TableView.TableViewSelectionModel<ProyectoEntrada> tvSelModelo = tvProyecto.getSelectionModel();
-        
-        
+        TableView.TableViewSelectionModel<ProyectoEntrada> tvSelModelo = tvProyecto.getSelectionModel();                
         
         tvSelModelo.selectedIndexProperty().addListener(
                 new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> cambio,
                     Number viejoVal, Number nuevoVal) {
                 
-                // Muestra el índice de la selección
-                //lblRespuesta.setText("Renglón seleccionado " + nuevoVal );
-                
                 ObservableList<TablePosition> olRow = tvSelModelo.getSelectedCells();
-                System.out.println(olRow.get(0).getRow() + ", " + olRow.get(0).getColumn());
-                System.out.println( tvSelModelo.getSelectedCells().get(0).getColumn() );
-                switch( tvSelModelo.getSelectedCells().get(0).getColumn() ){
-                    case 1:
-                        System.out.println("Enviar notificacion");
-                        if( projEntradas.get(0).getLunes().equalsIgnoreCase("Asesoria")){
-                            System.out.println("Enviar notificacion");
-                        }
-                        break;
-                    case 2:
-                        System.out.println("Enviar notificacion");
-                        if(projEntradas.get(0).getMartes().equalsIgnoreCase("Asesoria")){
-                            System.out.println("Enviar notificacion");
-                        }
-                        break;
-                    case 3:
-                        System.out.println("Enviar notificacion");
-                        if(projEntradas.get(0).getMiercoles().equalsIgnoreCase("Asesoria")){
-                            System.out.println("Enviar notificacion");
-                        }
-                        break;
-                    case 4:
-                        System.out.println("Enviar notificacion");
-                        if(projEntradas.get(0).getJueves().equalsIgnoreCase("Asesoria")){
-                            System.out.println("Enviar notificacion");
-                        }
-                        break;
-                    case 5:
-                        System.out.println("");
-                        System.out.println("Enviar notificacion");
-                        if(projEntradas.get(0).getViernes().equalsIgnoreCase("Asesoria")){
-                            System.out.println("Enviar notificacion");
-                        }
-                        break;
+                //System.out.println(olRow.get(0).getRow() + ", " + olRow.get(0).getColumn());               
+                
+                //System.out.println( tvSelModelo.getSelectedCells().get(0).getTableColumn() );
+                
+                TableColumn column = tvSelModelo.getSelectedCells().get(0).getTableColumn();
+                System.out.println(column.getCellData(olRow.get(0).getRow()));
+                if( column.getCellData(olRow.get(0).getRow()).equals("Asesoria") ){
+                    System.out.println("Enviar Notificacion");
+                }else{
+                    System.out.println("Selecciona un horario de asesoria valido");
                 }
-                                
+                
+                
             }
         });
         
