@@ -790,7 +790,39 @@ public class AgendaProfesor extends Application{
                 
                 ObservableList<TablePosition> olRow = tvSelModelo.getSelectedCells();
                 System.out.println(olRow.get(0).getRow() + ", " + olRow.get(0).getColumn());
-                System.out.println( tvSelModelo.getSelectedCells().get(0) );
+                System.out.println( tvSelModelo.getSelectedCells().get(0).getColumn() );
+                switch( tvSelModelo.getSelectedCells().get(0).getColumn() ){
+                    case 1:
+                        System.out.println("Enviar notificacion");
+                        if( projEntradas.get(0).getLunes().equalsIgnoreCase("Asesoria")){
+                            System.out.println("Enviar notificacion");
+                        }
+                        break;
+                    case 2:
+                        System.out.println("Enviar notificacion");
+                        if(projEntradas.get(0).getMartes().equalsIgnoreCase("Asesoria")){
+                            System.out.println("Enviar notificacion");
+                        }
+                        break;
+                    case 3:
+                        System.out.println("Enviar notificacion");
+                        if(projEntradas.get(0).getMiercoles().equalsIgnoreCase("Asesoria")){
+                            System.out.println("Enviar notificacion");
+                        }
+                        break;
+                    case 4:
+                        System.out.println("Enviar notificacion");
+                        if(projEntradas.get(0).getJueves().equalsIgnoreCase("Asesoria")){
+                            System.out.println("Enviar notificacion");
+                        }
+                        break;
+                    case 5:
+                        System.out.println("Enviar notificacion");
+                        if(projEntradas.get(0).getViernes().equalsIgnoreCase("Asesoria")){
+                            System.out.println("Enviar notificacion");
+                        }
+                        break;
+                }
                                 
             }
         });
