@@ -30,7 +30,7 @@ public class UsersDefault {
                     + ");";
             f.EjecutaSQL(sql);            
             //usuarios ya registrados de esta parte
-           f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('2153001419', 'Victor Estupiñan', '2153001419');");
+            f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('2153001419', 'Victor Estupiñan', '2153001419');");
             f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('2153035791', 'Fabian Galicia', '2153035791');");
             f.EjecutaSQL("insert into Tusuarios (id, nombre, pass) values('12345', 'Martha Mora Torres', '12345678');");*/
 

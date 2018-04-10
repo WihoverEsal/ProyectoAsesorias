@@ -1,22 +1,16 @@
-
 package modelo;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.value.*;
+import javafx.collections.*;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.*;
 import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import proyectoasesorias.Alumno;
-
-
 
 public class AgendaProfesor extends Application{
 
@@ -116,7 +110,19 @@ public class AgendaProfesor extends Application{
         agRodrigo.addDia("Miercoles");
         agRodrigo.addDia("Jueves");
         agRodrigo.addDia("Viernes");
-        agRodrigo.addHora(new HoraAsesoria(true,5));
+        agRodrigo.addHora(new HoraAsesoria(true,4));
+        
+        Agenda agRodrigo2 = new Agenda();
+        agRodrigo2.addDia("Lunes");
+        agRodrigo2.addDia("Miercoles");
+        agRodrigo2.addDia("Viernes");
+        agRodrigo2.addHora(new HoraAsesoria(true,1));
+        
+        Agenda agRodrigo3 = new Agenda();
+        agRodrigo3.addDia("Lunes");
+        agRodrigo3.addDia("Miercoles");
+        agRodrigo3.addDia("Viernes");
+        agRodrigo3.addHora(new HoraAsesoria(true,2));
         
         Agenda agIrma = new Agenda();
         agIrma.addDia("Miercoles");
@@ -177,9 +183,7 @@ public class AgendaProfesor extends Application{
         Agenda agLizbet = new Agenda();
         agLizbet.addDia("Lunes");
         agLizbet.addDia("Miercoles");
-        agLizbet.addHora(new HoraAsesoria(true,3));
-     
-       
+        agLizbet.addHora(new HoraAsesoria(true,3));            
         //HASTA AQUÍ LA CREACIÓN DE AGENDAS
         
         FlowPane raizNodo = new FlowPane(10, 10); 
@@ -201,8 +205,7 @@ public class AgendaProfesor extends Application{
             new ProyectoEntrada("17:30-19:00", " ", " ", " ", " "," "),
             new ProyectoEntrada("19:00-20:30", " ", " ", " ", " "," "),
             new ProyectoEntrada("20:30-22:00", " ", " ", " ", " "," ")); 
-        
-        
+              
         switch(profe){
           //caso martha mora verifica que los horarios que agendamos coincidad con nuestro proyecto de entradas donde tenemos nuestros horarios
             case "Martha Mora Torres":                
@@ -227,10 +230,9 @@ public class AgendaProfesor extends Application{
                             break;
                     }
                 }
-                break;
-                
+                break;                
                 //caso profe zaragoza hace lo mismo 
-                 case "Francisco Javier Zaragoza Martinez":                
+            case "Francisco Javier Zaragoza Martinez":                
                 for(int i = 0; i < agZaragoza.getDias().size(); i++){
                     System.out.println(agZaragoza.getDias().size());
                     System.out.println(agZaragoza.getDias().get(i));
@@ -273,8 +275,7 @@ public class AgendaProfesor extends Application{
                             break;
                     }
                 }//esta es la segunda parte de dos y media a 4
-                break;
-           
+                break;           
             case "Lourdes Sanchez Guerrero":
                 for(int i = 0; i < agLourdes.getDias().size(); i++){
                     switch(agLourdes.getDias().get(i)){
@@ -295,8 +296,7 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                break;
-                
+                break;                
             case "Josue Figueroa Gonzalez":
                 for(int i = 0; i < agJosue.getDias().size(); i++){
                     switch(agJosue.getDias().get(i)){
@@ -317,9 +317,8 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                break;
-                
-                 case "Alejandro Cruz Sandoval":
+                break;                
+            case "Alejandro Cruz Sandoval":
                     for(int i = 0; i < agAlejandro.getDias().size(); i++){
                     System.out.println(agAlejandro.getDias().size());
                     System.out.println(agAlejandro.getDias().get(i));
@@ -383,9 +382,8 @@ public class AgendaProfesor extends Application{
                             break;
                     }
                 }//esta es la tercera parte de 1 a 2:30 son horas completas
-                break;
-                
-                case "Hugo Pablo Leyva":
+                break;                
+            case "Hugo Pablo Leyva":
                 for(int i = 0; i < agHugo.getDias().size(); i++){
                     switch(agHugo.getDias().get(i)){
                         case "Lunes":
@@ -405,9 +403,8 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                break;
-                
-                case "Marco A. Gutiérrez Villegas":
+                break;                
+            case "Marco A. Gutiérrez Villegas":
                 for(int i = 0; i < agVillegas.getDias().size(); i++){
                     switch(agVillegas.getDias().get(i)){
                         case "Lunes":
@@ -446,32 +443,68 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                break;
-                
-                 case "Rodrigo Alexander Castro Campos":
-                    for(int i = 0; i < agRodrigo.getDias().size(); i++){
-                        switch(agRodrigo.getDias().get(i)){
-                          case "Lunes":
+                break;                
+            case "Rodrigo Alexander Castro Campos":
+                for(int i = 0; i < agRodrigo.getDias().size(); i++){
+                    switch(agRodrigo.getDias().get(i)){
+                        case "Lunes":
                             projEntradas.get(agRodrigo.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
                             break;
-                          case "Martes":
+                        case "Martes":
                             projEntradas.get(agRodrigo.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
                             break;
-                         case "Miercoles":
+                        case "Miercoles":
                             projEntradas.get(agRodrigo.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
                             break;
-                         case "Jueves":
+                        case "Jueves":
                             projEntradas.get(agRodrigo.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
                             break;
-                        case "Viernes":
+                       case "Viernes":
                             projEntradas.get(agRodrigo.getHoras().get(0).getIndiceHora()).setViernes("Asesoria");
                             break;
                     }          
                 }
-                break;
-                
-                case "Irma Fernanda Ardon Pulido":
-                    for(int i = 0; i < agIrma.getDias().size(); i++){
+                for(int i = 0; i < agRodrigo2.getDias().size(); i++){
+                    switch(agRodrigo2.getDias().get(i)){
+                        case "Lunes":
+                            projEntradas.get(agRodrigo2.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
+                            break;
+                        case "Martes":
+                            projEntradas.get(agRodrigo2.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
+                            break;
+                        case "Miercoles":
+                            projEntradas.get(agRodrigo2.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
+                            break;
+                        case "Jueves":
+                            projEntradas.get(agRodrigo2.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
+                            break;
+                       case "Viernes":
+                            projEntradas.get(agRodrigo2.getHoras().get(0).getIndiceHora()).setViernes("Asesoria");
+                            break;
+                    }          
+                }
+                for(int i = 0; i < agRodrigo3.getDias().size(); i++){
+                    switch(agRodrigo3.getDias().get(i)){
+                        case "Lunes":
+                            projEntradas.get(agRodrigo3.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
+                            break;
+                        case "Martes":
+                            projEntradas.get(agRodrigo3.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
+                            break;
+                        case "Miercoles":
+                            projEntradas.get(agRodrigo3.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
+                            break;
+                        case "Jueves":
+                            projEntradas.get(agRodrigo3.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
+                            break;
+                       case "Viernes":
+                            projEntradas.get(agRodrigo3.getHoras().get(0).getIndiceHora()).setViernes("Asesoria");
+                            break;
+                    }          
+                }
+                break;                
+            case "Irma Fernanda Ardon Pulido":
+                for(int i = 0; i < agIrma.getDias().size(); i++){
                     System.out.println(agIrma.getDias().size());
                     System.out.println(agIrma.getDias().get(i));
                     switch(agIrma.getDias().get(i)){
@@ -576,21 +609,20 @@ public class AgendaProfesor extends Application{
                             break;
                     }
                 }
-                break;
-                
-                case "Oscar Alvarado Nava":
-                    for(int i = 0; i < agNava.getDias().size(); i++){
-                        switch(agNava.getDias().get(i)){
-                          case "Lunes":
+                break;                
+            case "Oscar Alvarado Nava":
+                for(int i = 0; i < agNava.getDias().size(); i++){
+                    switch(agNava.getDias().get(i)){
+                        case "Lunes":
                             projEntradas.get(agNava.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
                             break;
-                          case "Martes":
+                        case "Martes":
                             projEntradas.get(agNava.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
                             break;
-                         case "Miercoles":
+                        case "Miercoles":
                             projEntradas.get(agNava.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
                             break;
-                         case "Jueves":
+                        case "Jueves":
                             projEntradas.get(agNava.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
                             break;
                         case "Viernes":
@@ -598,18 +630,18 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                    for(int i = 0; i < agNava2.getDias().size(); i++){
-                        switch(agNava2.getDias().get(i)){
-                          case "Lunes":
+                for(int i = 0; i < agNava2.getDias().size(); i++){
+                    switch(agNava2.getDias().get(i)){
+                        case "Lunes":
                             projEntradas.get(agNava2.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
                             break;
-                          case "Martes":
+                        case "Martes":
                             projEntradas.get(agNava2.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
                             break;
-                         case "Miercoles":
+                        case "Miercoles":
                             projEntradas.get(agNava2.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
                             break;
-                         case "Jueves":
+                        case "Jueves":
                             projEntradas.get(agNava2.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
                             break;
                         case "Viernes":
@@ -617,21 +649,20 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                break;
-                
-                case "Eduardo Rodriguez Martinez":
-                    for(int i = 0; i < agEduardo.getDias().size(); i++){
-                        switch(agEduardo.getDias().get(i)){
-                          case "Lunes":
+                break;                
+            case "Eduardo Rodriguez Martinez":
+                for(int i = 0; i < agEduardo.getDias().size(); i++){
+                    switch(agEduardo.getDias().get(i)){
+                        case "Lunes":
                             projEntradas.get(agEduardo.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
                             break;
-                          case "Martes":
+                        case "Martes":
                             projEntradas.get(agEduardo.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
                             break;
-                         case "Miercoles":
+                        case "Miercoles":
                             projEntradas.get(agEduardo.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
                             break;
-                         case "Jueves":
+                        case "Jueves":
                             projEntradas.get(agEduardo.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
                             break;
                         case "Viernes":
@@ -639,18 +670,18 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                    for(int i = 0; i < agEduardo2.getDias().size(); i++){
-                        switch(agEduardo2.getDias().get(i)){
-                          case "Lunes":
+                for(int i = 0; i < agEduardo2.getDias().size(); i++){
+                    switch(agEduardo2.getDias().get(i)){
+                        case "Lunes":
                             projEntradas.get(agEduardo2.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
                             break;
-                          case "Martes":
+                        case "Martes":
                             projEntradas.get(agEduardo2.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
                             break;
-                         case "Miercoles":
+                        case "Miercoles":
                             projEntradas.get(agEduardo2.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
                             break;
-                         case "Jueves":
+                        case "Jueves":
                             projEntradas.get(agEduardo2.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
                             break;
                         case "Viernes":
@@ -658,21 +689,20 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
-                break;
-                
-                case "Oscar Herrera Alcántara":
-                    for(int i = 0; i < agAlcantara.getDias().size(); i++){
-                        switch(agAlcantara.getDias().get(i)){
-                          case "Lunes":
+                break;                
+            case "Oscar Herrera Alcántara":
+                for(int i = 0; i < agAlcantara.getDias().size(); i++){
+                    switch(agAlcantara.getDias().get(i)){
+                        case "Lunes":
                             projEntradas.get(agAlcantara.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
                             break;
-                          case "Martes":
+                        case "Martes":
                             projEntradas.get(agAlcantara.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
                             break;
-                         case "Miercoles":
+                        case "Miercoles":
                             projEntradas.get(agAlcantara.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
                             break;
-                         case "Jueves":
+                        case "Jueves":
                             projEntradas.get(agAlcantara.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
                             break;
                         case "Viernes":
@@ -682,19 +712,19 @@ public class AgendaProfesor extends Application{
                 }
                 break;
          //en esta parte las asesorias de los dos profes es de media hora de duracion pero las maneje igual como horas completas
-                case "Lizbeth Gallardo López":
-                    for(int i = 0; i < agLizbet.getDias().size(); i++){
-                        switch(agLizbet.getDias().get(i)){
-                          case "Lunes":
+            case "Lizbeth Gallardo Lopez":
+                for(int i = 0; i < agLizbet.getDias().size(); i++){
+                    switch(agLizbet.getDias().get(i)){
+                        case "Lunes":
                             projEntradas.get(agLizbet.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
                             break;
-                          case "Martes":
+                        case "Martes":
                             projEntradas.get(agLizbet.getHoras().get(0).getIndiceHora()).setMartes("Asesoria");
                             break;
-                         case "Miercoles":
+                        case "Miercoles":
                             projEntradas.get(agLizbet.getHoras().get(0).getIndiceHora()).setMiercoles("Asesoria");
                             break;
-                         case "Jueves":
+                        case "Jueves":
                             projEntradas.get(agLizbet.getHoras().get(0).getIndiceHora()).setJueves("Asesoria");
                             break;
                         case "Viernes":
@@ -702,19 +732,14 @@ public class AgendaProfesor extends Application{
                             break;
                     }          
                 }
+                break;                                
+            default: 
+                System.out.println("No se encontró");
                 break;
-
-
-
-                
-                
-            default: System.out.println("No se encontró");
-                     break;
         }
         
-         // Crea el table view  
-         tvProyecto = new TableView<ProyectoEntrada>(projEntradas); 
- 
+        // Crea el table view  
+        tvProyecto = new TableView<ProyectoEntrada>(projEntradas);  
  
         // Añade encabezados y especifica cell factories 
         TableColumn<ProyectoEntrada, String> hora = 
@@ -750,6 +775,25 @@ public class AgendaProfesor extends Application{
         // Tamaño de la table view. 
         tvProyecto.setPrefWidth(430); 
         tvProyecto.setPrefHeight(305); 
+        
+        TableView.TableViewSelectionModel<ProyectoEntrada> tvSelModelo = tvProyecto.getSelectionModel();
+        
+        
+        
+        tvSelModelo.selectedIndexProperty().addListener(
+                new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> cambio,
+                    Number viejoVal, Number nuevoVal) {
+                
+                // Muestra el índice de la selección
+                //lblRespuesta.setText("Renglón seleccionado " + nuevoVal );
+                
+                ObservableList<TablePosition> olRow = tvSelModelo.getSelectedCells();
+                System.out.println(olRow.get(0).getRow() + ", " + olRow.get(0).getColumn());
+                System.out.println( tvSelModelo.getSelectedCells().get(0) );
+                                
+            }
+        });
         
         btncerrar.setOnAction(e->{
             try {
