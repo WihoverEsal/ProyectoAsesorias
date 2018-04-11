@@ -75,7 +75,7 @@ public class Alumno extends Application {
         
         
        // btBuscar = new Button("Buscar");
-        btCerrar = new Button("Cerrar"+ "\nSesión");
+        btCerrar = new Button("Cerrar Sesión");
       
         materias = new Label("Materias:");
         profesores = new Label("Profesores:");
@@ -172,7 +172,7 @@ public class Alumno extends Application {
             }
         });
         
-        btCerrar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        btCerrar.setStyle("-fx-font: 17 arial; -fx-base: #E91E63;");
         DropShadow shadow = new DropShadow();
         shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
         //Adding the shadow when the mouse cursor is on

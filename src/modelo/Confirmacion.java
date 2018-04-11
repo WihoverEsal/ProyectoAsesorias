@@ -14,7 +14,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import proyectoasesorias.Alumno;
 
@@ -42,6 +45,7 @@ public class Confirmacion extends Application{
         
         FlowPane raiz = new FlowPane(10, 10);
         raiz.setAlignment(Pos.CENTER);
+        raiz.setStyle("-fx-background-color: #FFC107;");
         
         Scene escena = new Scene(raiz, 490, 100);        
         escenario.setScene(escena);
@@ -92,10 +96,28 @@ public class Confirmacion extends Application{
         }
         
         Label lblConfirm = new Label();
+        lblConfirm.setFont(Font.font("Arial", 16));
         lblConfirm .setText("¿Estas seguro de enviar la notificacion para asesoria el dia "
                 + dia + " a las " + hora +"\n con el docente " + profe + " en el cubiculo " + cubo + "?");
         
         Button btnConfirm = new Button("Confirmar");
+        btnConfirm.setStyle("-fx-font: 17 arial; -fx-base: #E91E63;");
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        btnConfirm.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                btnConfirm.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        btnConfirm.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                btnConfirm.setEffect(null);
+            }
+        });
         btnConfirm.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -114,6 +136,23 @@ public class Confirmacion extends Application{
         });
         
         Button btnCancelar = new Button("Cancelar");
+        btnCancelar.setStyle("-fx-font: 17 arial; -fx-base: #E91E63;");
+        //DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        btnCancelar.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                btnCancelar.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        btnCancelar.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                btnCancelar.setEffect(null);
+            }
+        });
         btnCancelar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

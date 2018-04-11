@@ -14,6 +14,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import proyectoasesorias.Alumno;
 
@@ -198,7 +199,7 @@ public class AgendaProfesor extends Application{
         escenario.setScene(myScene);   
    
         encabezado = new Label("Agenda " + profe ); 
-        
+        encabezado.setFont(Font.font("Arial", 16));
         ObservableList<ProyectoEntrada> projEntradas = FXCollections.observableArrayList( 
             new ProyectoEntrada("7:00-8:30", " ", " ", " ", " "," "), 
             new ProyectoEntrada("8:30-10:00", " ", " ", " ", " "," "), 
@@ -825,7 +826,7 @@ public class AgendaProfesor extends Application{
             }
         });
         
-        btncerrar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        btncerrar.setStyle("-fx-font: 17 arial; -fx-base: #E91E63;");
         DropShadow shadow = new DropShadow();
         shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
         //Adding the shadow when the mouse cursor is on

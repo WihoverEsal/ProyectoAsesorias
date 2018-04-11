@@ -147,7 +147,7 @@ public class Registrate extends Application {
         canch.setAlignment(Pos.CENTER_LEFT);
         Button submit = new Button("Enviar");
         submit.setCursor(Cursor.HAND);
-        submit.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+        submit.setFont(Font.font("Arial", FontWeight.BOLD, 18));
         submit.setStyle("-fx-background-color: #E91E63;");
 
         submit.setOnAction((ActionEvent event) -> {
@@ -206,7 +206,7 @@ public class Registrate extends Application {
 
         });
         
-         submit.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        submit.setStyle("-fx-font: 18 arial; -fx-base: #E91E63;");
         DropShadow shadow = new DropShadow();
         shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
         //Adding the shadow when the mouse cursor is on
@@ -246,11 +246,8 @@ public class Registrate extends Application {
             } catch (Exception ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-        
-       
-        
-        cancel.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        });                       
+        cancel.setStyle("-fx-font: 18 arial; -fx-base: #E91E63;");
         DropShadow shadow2 = new DropShadow();
         shadow2.setColor(javafx.scene.paint.Color.web("#E91E63"));
         //Adding the shadow when the mouse cursor is on
@@ -266,12 +263,8 @@ public class Registrate extends Application {
             @Override public void handle(MouseEvent e) {
                 cancel.setEffect(null);
             }
-        });
-        
-        
-
+        });                
         canch.getChildren().addAll(cancel);
-
         // GridPane.setHalignment(cancel, HPos.CENTER);
         gdtop.add(canch, 1, 4);
         bp.setCenter(gdtop);

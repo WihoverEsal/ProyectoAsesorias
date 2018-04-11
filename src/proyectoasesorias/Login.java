@@ -250,7 +250,7 @@ public class Login extends Application {
             }
         });
         
-       btnIniciar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+       btnIniciar.setStyle("-fx-font: 18 arial; -fx-base: #E91E63;");
         DropShadow shadow = new DropShadow();
         shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
         //Adding the shadow when the mouse cursor is on
@@ -268,7 +268,7 @@ public class Login extends Application {
             }
         });
         
-        lblRegistrarse.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        lblRegistrarse.setStyle("-fx-font: 18 arial; -fx-base: #E91E63;");
         DropShadow shadow2 = new DropShadow();
         shadow2.setColor(javafx.scene.paint.Color.web("#E91E63"));
         //Adding the shadow when the mouse cursor is on
@@ -284,12 +284,7 @@ public class Login extends Application {
             @Override public void handle(MouseEvent e) {
                 lblRegistrarse.setEffect(null);
             }
-        });
-        
-        
-        
-        
-        
+        });                                        
         Label lblsaltos =new Label("\n");
         vbAllHB.getChildren().addAll(hbInisesion, lblsaltos, hbUserImg, hbPassImg, hbBtns, lblRespuesta, lblOlvidar);
         //raiz.getChildren().addAll(lblIniciar,lblUsuario,txtUsuario,lblPass,psfPass,btnIniciar,btnRegistrarse,lblOlvidar);
