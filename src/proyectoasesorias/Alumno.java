@@ -5,6 +5,7 @@
  */
 package proyectoasesorias;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,12 +14,16 @@ import static javafx.application.Application.launch;
 import javafx.beans.value.*;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.*;
 
 public class Alumno extends Application {
@@ -44,7 +49,7 @@ public class Alumno extends Application {
     ArrayList<HoraAsesoria> horasAs1;    
     ListView<String> lvProfesor;
     
-    Button btBuscar;
+//    Button btBuscar;
     Button btCerrar;
     
     Stage escenario;
@@ -67,7 +72,9 @@ public class Alumno extends Application {
         escenario = stage;
         escenario.setTitle("Alumno");
         
-        btBuscar = new Button("Buscar");
+        
+        
+       // btBuscar = new Button("Buscar");
         btCerrar = new Button("Cerrar"+ "\nSesión");
       
         materias = new Label("Materias:");
@@ -165,17 +172,42 @@ public class Alumno extends Application {
             }
         });
         
+        btCerrar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        btCerrar.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                btCerrar.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        btCerrar.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                btCerrar.setEffect(null);
+            }
+        });
+        
         
           
         FlowPane pane1 = new FlowPane(Orientation.VERTICAL,15,15);
         FlowPane pane2 = new FlowPane(70,40);
         
+         pane1.setStyle("-fx-background-color: #18FFFF;");
+         pane2.setStyle("-fx-background-color: #18FFFF;");
+
+        
         pane1.setAlignment(Pos.CENTER);
-        pane2.getChildren().addAll(btCerrar,btBuscar);
+        pane2.setAlignment(Pos.CENTER);
+        pane2.getChildren().addAll(btCerrar/*,btBuscar*/);
         pane1.getChildren().addAll(materias,cbMaterias,profesores,lvProfesor,pane2);
         
         pane2.setPrefWidth(200);
         Scene escena = new Scene(pane1,300,300);
+        
+        
         
         stage.setScene(escena);
         stage.show();
