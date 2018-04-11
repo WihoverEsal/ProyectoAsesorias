@@ -27,11 +27,13 @@ public class Confirmacion extends Application{
     String hora;
     String dia;
     String profe;
+    String cubo;
     
     public Confirmacion(String hora, String dia, String profe){
         this.hora = hora;
         this.dia = dia;
         this.profe = profe;
+        this.cubo = "H-224";
     }
 
     @Override
@@ -47,9 +49,51 @@ public class Confirmacion extends Application{
         VBox vbControles = new VBox(10);
         HBox hbBtns = new HBox(20);
         
+        switch(profe){
+            case "Martha Mora Torres":
+                cubo = "H-263";
+                break;
+            case "Francisco Javier Zaragoza Martinez":
+                cubo = "H-264";
+                break;
+            case "Lourdes Sanchez Guerrero":
+                cubo = "H-262";
+                break;
+            case "Josue Figueroa Gonzalez":
+                cubo = "H-293";
+                break;
+            case "Alejandro Cruz Sandoval":
+                cubo = "H-295";
+                break;
+            case "Hugo Pablo Leyva":
+                cubo = "HP-7";
+                break;
+            case "Marco A. Gutiérrez Villegas":
+                cubo = "H-295";
+                break;
+            case "Rodrigo Alexander Castro Campos":
+                cubo = "HP-11";
+                break;
+            case "Irma Fernanda Ardon Pulido":
+                cubo = "HP-6";
+                break;
+            case "Oscar Alvarado Nava":
+                cubo = "G-301";
+                break;                       
+            case "Eduardo Rodriguez Martinez":
+                cubo = "G-312";
+                break;
+            case "Oscar Herrera Alcántara":
+                cubo = "H-255";
+                break;
+            case "Lizbeth Gallardo López":
+                cubo = "H-244";
+                break;                    
+        }
+        
         Label lblConfirm = new Label();
         lblConfirm .setText("¿Estas seguro de enviar la notificacion para asesoria el dia "
-                + dia + " a las " + hora +"\n con el docente " + profe + "?");
+                + dia + " a las " + hora +"\n con el docente " + profe + " en el cubiculo " + cubo + "?");
         
         Button btnConfirm = new Button("Confirmar");
         btnConfirm.setOnAction(new EventHandler<ActionEvent>() {
