@@ -114,13 +114,13 @@ public class RProfesor extends Application {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Button agenda = new Button("Confirmar Asesoria");
+        Button agenda = new Button("Confirmar Asesorias");
         Button cerrsesion = new Button("Cerrar sesion");
         
         agenda.setOnAction((ActionEvent event) -> {
                 Alert altConfirma = new Alert(Alert.AlertType.CONFIRMATION);
                 altConfirma.setTitle("Confirmado");
-                altConfirma.setHeaderText("Se ha enviado correctamente la notificacion ");
+                altConfirma.setHeaderText("Status: Disponible para asesoria");
                 altConfirma.setContentText(null);
                 altConfirma.showAndWait();
         });
