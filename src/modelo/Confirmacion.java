@@ -47,7 +47,7 @@ public class Confirmacion extends Application{
         raiz.setAlignment(Pos.CENTER);
         raiz.setStyle("-fx-background-color: #FFC107;");
         
-        Scene escena = new Scene(raiz, 490, 100);        
+        Scene escena = new Scene(raiz, 670, 100);        
         escenario.setScene(escena);
         
         VBox vbControles = new VBox(10);
