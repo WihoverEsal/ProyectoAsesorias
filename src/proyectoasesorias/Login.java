@@ -43,7 +43,7 @@ public class Login extends Application {
     Label lblIniciar;
     Label lblRespuesta;
     Button btnIniciar;
-    Label lblRegistrarse;
+    Button lblRegistrarse;
 
     HBox hbInisesion;
     HBox hbUserImg;
@@ -120,22 +120,19 @@ public class Login extends Application {
         psfPass.setPromptText("Contraseña");
 
         btnIniciar = new Button("Iniciar Sesion");
-        lblRegistrarse = new Label("Registrarse");
+        lblRegistrarse = new Button("Registrarse");
         lblRegistrarse.setFont(Font.font("Arial", FontWeight.NORMAL, FontPosture.REGULAR, 12));
-        lblRegistrarse.setTextFill(Color.BLUE);
-        lblRegistrarse.underlineProperty().set(true);
+        //lblRegistrarse.setTextFill(Color.BLUE);
+       // lblRegistrarse.underlineProperty().set(true);
 
-        lblRegistrarse.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                lblRespuesta.setText("Se dio clic en label registrarse");
-                Registrate reg = new Registrate();
-                try {
-                    reg.start(escenario);
-                    //Poner aqui el escenario de la pantalla registrarse
-                } catch (Exception ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        lblRegistrarse.setOnAction((ActionEvent event) -> {
+            //lblRespuesta.setText("Se dio clic en label registrarse");
+            Registrate reg = new Registrate();
+            try {
+                reg.start(escenario);
+                //Poner aqui el escenario de la pantalla registrarse
+            } catch (Exception ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
@@ -150,8 +147,12 @@ public class Login extends Application {
         hbPassImg = new HBox(5);
         hbPassImg.setAlignment(Pos.CENTER);
         hbPassImg.getChildren().addAll(lblPass, psfPass);
-
-        hbBtns = new HBox(15);
+        
+        btnIniciar.setScaleX(.7);
+        btnIniciar.setScaleY(.7);
+        lblRegistrarse.setScaleX(.7);
+        lblRegistrarse.setScaleY(.7);
+        hbBtns = new HBox();
         hbBtns.setAlignment(Pos.CENTER);
         hbBtns.getChildren().addAll(btnIniciar, lblRegistrarse);
 
@@ -183,23 +184,7 @@ public class Login extends Application {
             hsUsuarios.put(alUsuario.get(i).hashCode(), alUsuario.get(i));
         }*/
         
-         btnIniciar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
-        DropShadow shadow = new DropShadow();
-        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
-        //Adding the shadow when the mouse cursor is on
-        btnIniciar.addEventHandler(MouseEvent.MOUSE_ENTERED, 
-            new EventHandler<MouseEvent>() {
-                @Override public void handle(MouseEvent e) {
-                btnIniciar.setEffect(shadow);
-                }
-        });
-        //Removing the shadow when the mouse cursor is off
-        btnIniciar.addEventHandler(MouseEvent.MOUSE_EXITED, 
-        new EventHandler<MouseEvent>() {
-            @Override public void handle(MouseEvent e) {
-                btnIniciar.setEffect(null);
-            }
-        });
+         
                 
         btnIniciar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -264,7 +249,45 @@ public class Login extends Application {
             }
         });
         
-       
+       btnIniciar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        btnIniciar.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                btnIniciar.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        btnIniciar.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                btnIniciar.setEffect(null);
+            }
+        });
+        
+        lblRegistrarse.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow2 = new DropShadow();
+        shadow2.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        lblRegistrarse.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                lblRegistrarse.setEffect(shadow2);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        lblRegistrarse.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                lblRegistrarse.setEffect(null);
+            }
+        });
+        
+        
+        
+        
         
         Label lblsaltos =new Label("\n");
         vbAllHB.getChildren().addAll(hbInisesion, lblsaltos, hbUserImg, hbPassImg, hbBtns, lblRespuesta, lblOlvidar);
