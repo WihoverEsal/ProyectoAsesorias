@@ -79,6 +79,7 @@ public class Login extends Application {
         raiz.setStyle("-fx-background-color: #2DBCC0;");
 
         Scene escena = new Scene(raiz, 270, 300);
+        escenario.setResizable(false);
         escenario.setScene(escena);
 
         Image imUser = new Image("user.png", 25, 25, true, true);
@@ -92,7 +93,13 @@ public class Login extends Application {
         ivPass.setBlendMode(BlendMode.MULTIPLY);
         ivPass.setSmooth(true);
 
-        lblIniciar = new Label("Iniciar Sesion");//Aqui puede ir el logo de la aplicacion 
+        lblIniciar = new Label(" ADVIUAM ");//Aqui puede ir el logo de la aplicacion
+        lblIniciar.setFont(Font.font("CASTELLAR", FontWeight.EXTRA_LIGHT, FontPosture.ITALIC, 25));
+        //lblIniciar.setFont(Font.font("SEGOE PRINT", FontWeight.MEDIUM, FontPosture.ITALIC, 22));
+        //lblIniciar.setFont(Font.font("FORTE", FontWeight.MEDIUM, FontPosture.ITALIC, 22));
+        //lblIniciar.setFont(Font.font("HARRINGTON", FontWeight.MEDIUM, FontPosture.ITALIC, 22));
+        //lblIniciar.setFont(Font.font("KRISTEN ITC", FontWeight.MEDIUM, FontPosture.ITALIC, 22));
+        
         lblUsuario = new Label("", ivUser);
         lblPass = new Label("", ivPass);
 
@@ -201,35 +208,46 @@ public class Login extends Application {
                 } catch (SQLException ex) {
                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                //System.out.println(bandera);
-                if( (usuario.getIdentificador().length() == 10 || usuario.getIdentificador().length() == 5) && usuario.getClavePass().length() > 7 ){
-                //if (txtUsuario.getText().length() == 10 && psfPass.getText().length() > 7) {
-                setNEco(usuario.getIdentificador());
-                RProfesor rProf = new RProfesor( getNEco() );                    
-                try {
-                    //System.out.println("hash del password: " + psfPass.getText().hashCode());
-                    if( bandera == true ){                  
-                        if(usuario.getIdentificador().length() == 10){
-                            al.start(escenario);
-                        }else{
-                            rProf.start(escenario);
+                System.out.println(bandera);
+                if(bandera == true){
+                    if( (usuario.getIdentificador().length() == 10 || usuario.getIdentificador().length() == 5) && usuario.getClavePass().length() > 7 ){
+                    //if (txtUsuario.getText().length() == 10 && psfPass.getText().length() > 7) {
+                        setNEco(usuario.getIdentificador());
+                        RProfesor rProf = new RProfesor( getNEco() );                    
+                        try {
+                            //System.out.println("hash del password: " + psfPass.getText().hashCode());
+                            //if( bandera == true ){                  
+                                if(usuario.getIdentificador().length() == 10 ){
+                                    if(usuario.getClavePass().equals(psfPass.getText()))
+                                        al.start(escenario);
+                                    else
+                                        lblRespuesta.setText("Verificar usuario y/o contraseña");
+                                        
+                                }else{
+                                    if(usuario.getClavePass().equals(psfPass.getText()))
+                                        rProf.start(escenario);
+                                    else
+                                        lblRespuesta.setText("Verificar usuario y/o contraseña");
+                                }
+                            //}else{
+                            //    lblRespuesta.setText("Usuario no encontrado\nRegistrate");
+                            //}   
+                            //escenario.close();
+                        } catch (Exception ex) {
+                            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }else{
-                        lblRespuesta.setText("Usuario no encontrado\nRegistrate");
+                    } else {
+                        //System.out.println("Verificar usuario y/o contraseña");
+                        lblRespuesta.setText("Verificar usuario y/o contraseña");
                     }
-                    //escenario.close();
-                } catch (Exception ex) {
-                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                } else {
+                    lblRespuesta.setText("Usuario no encontrado\nRegistrate");
                 }
-            } else {
-                //System.out.println("Verificar usuario y/o contraseña");
-                lblRespuesta.setText("Verificar usuario y/o contraseña");
-            }
-            //System.out.println("Ususario -> " + txtUsuario.getText() + " Password -> " + psfPass.getText());
+                    //System.out.println("Ususario -> " + txtUsuario.getText() + " Password -> " + psfPass.getText());
             }
         });
-
-        vbAllHB.getChildren().addAll(hbInisesion, hbUserImg, hbPassImg, hbBtns, lblRespuesta, lblOlvidar);
+        Label lblsaltos =new Label("\n");
+        vbAllHB.getChildren().addAll(hbInisesion, lblsaltos, hbUserImg, hbPassImg, hbBtns, lblRespuesta, lblOlvidar);
         //raiz.getChildren().addAll(lblIniciar,lblUsuario,txtUsuario,lblPass,psfPass,btnIniciar,btnRegistrarse,lblOlvidar);
         raiz.getChildren().addAll(vbAllHB);
 
