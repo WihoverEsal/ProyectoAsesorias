@@ -29,8 +29,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -60,28 +62,28 @@ public class Registrate extends Application {
         hb.setPadding(new Insets(2, 2, 2, 2));
         hb.setSpacing(20);
         hb.getChildren().addAll(hbtit);
-        hb.setStyle("-fx-background-color: #3FF4CB;");
+        hb.setStyle("-fx-background-color: #FFC107;");
         bp.setTop(hb);
 
         //HBOX BOTTOM
         HBox hdb = new HBox();
         hdb.setPadding(new Insets(10, 10, 10, 10));
         hdb.setSpacing(20);
-        hdb.setStyle("-fx-background-color: #3FF4CB;");
+        hdb.setStyle("-fx-background-color: #FFC107;");
         bp.setBottom(hdb);
 
         //VBOX LEFT
         VBox vdl = new VBox();
         vdl.setPadding(new Insets(10, 10, 10, 10));
         vdl.setSpacing(20);
-        vdl.setStyle("-fx-background-color: #3FF4CB;");
+        vdl.setStyle("-fx-background-color: #FFC107;");
         bp.setLeft(vdl);
 
         //VBOX RIGHT
         VBox vdr = new VBox();
         vdr.setPadding(new Insets(10, 10, 10, 10));
         vdr.setSpacing(20);
-        vdr.setStyle("-fx-background-color: #3FF4CB;");
+        vdr.setStyle("-fx-background-color: #FFC107;");
         bp.setRight(vdr);
 
         //CENTER GRID
@@ -91,6 +93,7 @@ public class Registrate extends Application {
         gdtop.setPadding(new Insets(10, 10, 10, 10));
         gdtop.setVgap(30);
         gdtop.setHgap(20);
+        gdtop.setStyle("-fx-background-color: #FFC107");
 
         //  GridPane.setHalignment(iv1, HPos.CENTER);
         // gdtop.add(iv1, 0, 0);
@@ -145,7 +148,7 @@ public class Registrate extends Application {
         Button submit = new Button("Enviar");
         submit.setCursor(Cursor.HAND);
         submit.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        submit.setStyle("-fx-background-color: #3FF4CB;");
+        submit.setStyle("-fx-background-color: #E91E63;");
 
         submit.setOnAction((ActionEvent event) -> {
 
@@ -202,6 +205,24 @@ public class Registrate extends Application {
             }
 
         });
+        
+         submit.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        submit.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                submit.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        submit.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                submit.setEffect(null);
+            }
+        });
 
         // GridPane.setHalignment(submit, HPos.CENTER);
         subh.getChildren().addAll(submit);
@@ -211,7 +232,7 @@ public class Registrate extends Application {
         Button cancel = new Button("Cancelar");
         cancel.setCursor(Cursor.HAND);
         cancel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        cancel.setStyle("-fx-background-color: #3FF4CB;");
+        cancel.setStyle("-fx-background-color: #E91E63;");
 
         //si se da cancelar en el boton te regresa a la pantalla de iniciar sesion
         cancel.setOnAction((ActionEvent event) -> {
@@ -226,6 +247,28 @@ public class Registrate extends Application {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+        
+       
+        
+        cancel.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow2 = new DropShadow();
+        shadow2.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        cancel.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                cancel.setEffect(shadow2);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        cancel.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                cancel.setEffect(null);
+            }
+        });
+        
+        
 
         canch.getChildren().addAll(cancel);
 

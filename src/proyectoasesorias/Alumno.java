@@ -195,8 +195,8 @@ public class Alumno extends Application {
         FlowPane pane1 = new FlowPane(Orientation.VERTICAL,15,15);
         FlowPane pane2 = new FlowPane(70,40);
         
-         pane1.setStyle("-fx-background-color: #18FFFF;");
-         pane2.setStyle("-fx-background-color: #18FFFF;");
+         pane1.setStyle("-fx-background-color: #FFC107;");
+         pane2.setStyle("-fx-background-color: #FFC107;");
 
         
         pane1.setAlignment(Pos.CENTER);

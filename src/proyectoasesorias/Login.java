@@ -77,7 +77,7 @@ public class Login extends Application {
 
         FlowPane raiz = new FlowPane(10, 10);
         raiz.setAlignment(Pos.CENTER);
-        raiz.setStyle("-fx-background-color: #2DBCC0;");
+        raiz.setStyle("-fx-background-color: #FFC107;");
 
         Scene escena = new Scene(raiz, 270, 300);
         escenario.setResizable(false);
