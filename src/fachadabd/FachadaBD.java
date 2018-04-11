@@ -23,7 +23,7 @@ public class FachadaBD {
           Class.forName("org.sqlite.JDBC").newInstance();
           //C:\Users\Victor Estupiñan\Documents\NetBeansProjects\ProyectoAsesorias\src\fachadabd
           ///Users/fabianzacate/Documents/pvo brambila/ProyectoAsesorias/src esta es mi ruta con la que trabajo
-          this.con = DriverManager.getConnection("jdbc:sqlite:C:/Users/Victor Estupiñan/Documents/NetBeansProjects/ProyectoAsesorias/src/fachadabd"+database);
+          this.con = DriverManager.getConnection("jdbc:sqlite:/Users/fabianzacate/Documents/pvo brambila/ProyectoAsesorias/src/fachadabd"+database);
         } catch (InstantiationException ex) {
             System.out.println("Connect: Error en la instanciacion del driver sqlite");
         } catch (IllegalAccessException ex) {

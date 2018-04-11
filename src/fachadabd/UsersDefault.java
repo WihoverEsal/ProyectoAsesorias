@@ -22,7 +22,7 @@ public class UsersDefault {
         try {
             FachadaBD f = new FachadaBD();
             f.connectToAndQueryDatabase("DBProyecto.db");
-            /*f.EjecutaSQL("DROP TABLE Tusuarios");            
+         /*   f.EjecutaSQL("DROP TABLE Tusuarios");            
             String sql= " CREATE TABLE Tusuarios(\n"
                     + " id text PRIMARY KEY,\n"
                     + " nombre text NOT NULL,\n"
