@@ -11,12 +11,16 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import modelo.Confirmacion;
 import modelo.Usuario;
+import proyectoasesorias.Alumno;
 import proyectoasesorias.Login;
 
 /**
@@ -109,9 +113,32 @@ public class RProfesor extends Application {
         }catch(SQLException ex){
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
+        Button agenda = new Button("Confirmar Asesoria");
+        Button cerrsesion = new Button("Cerrar sesion");
+        
+        agenda.setOnAction((ActionEvent event) -> {
+                Alert altConfirma = new Alert(Alert.AlertType.CONFIRMATION);
+                altConfirma.setTitle("Confirmado");
+                altConfirma.setHeaderText("Se ha enviado correctamente la notificacion ");
+                altConfirma.setContentText(null);
+                altConfirma.showAndWait();
+        });
+        
+        cerrsesion.setOnAction((ActionEvent event)->{
+                try {
+                    log.start(escenario);
+                } catch (Exception ex) {
+                    Logger.getLogger(Confirmacion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        });
+        
+        HBox hbBtns = new HBox(20);
+        hbBtns.getChildren().addAll(agenda, cerrsesion);       
+        hbBtns.setAlignment(Pos.CENTER);
+        
         VBox vbDatos = new VBox(10);
-        vbDatos.getChildren().addAll(lblNombre, lblEco, lblCubo);
+        vbDatos.getChildren().addAll(lblNombre, lblEco, lblCubo, hbBtns);
         
         raiz.getChildren().add(vbDatos);
         escenario.show();
