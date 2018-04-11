@@ -98,7 +98,7 @@ public class Login extends Application {
         lblIniciar = new Label(" ADVIUAM ");//Aqui puede ir el logo de la aplicacion
         lblIniciar.setFont(Font.font("CASTELLAR", FontWeight.EXTRA_LIGHT, FontPosture.ITALIC, 25));
         lblIniciar.setTextFill(Color.web("#E91E63"));
-        lblIniciar.setStyle("-fx-background-color: #FFC107");
+        lblIniciar.setStyle("-fx-background-color: #FFC107");                                
         
         Reflection r = new Reflection();
         r.setFraction(0.9);
