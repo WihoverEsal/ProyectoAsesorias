@@ -96,6 +96,7 @@ public class Login extends Application {
 
         lblIniciar = new Label(" ADVIUAM ");//Aqui puede ir el logo de la aplicacion
         lblIniciar.setFont(Font.font("CASTELLAR", FontWeight.EXTRA_LIGHT, FontPosture.ITALIC, 25));
+        
         //lblIniciar.setFont(Font.font("SEGOE PRINT", FontWeight.MEDIUM, FontPosture.ITALIC, 22));
         //lblIniciar.setFont(Font.font("FORTE", FontWeight.MEDIUM, FontPosture.ITALIC, 22));
         //lblIniciar.setFont(Font.font("HARRINGTON", FontWeight.MEDIUM, FontPosture.ITALIC, 22));

@@ -16,6 +16,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import modelo.Confirmacion;
@@ -47,8 +49,10 @@ public class RProfesor extends Application {
         escenario.setTitle("Profesor");
 
         FlowPane raiz = new FlowPane(10, 10);
-        Scene escena = new Scene(raiz, 350, 350);
         raiz.setAlignment(Pos.CENTER);
+        raiz.setStyle("-fx-background-color: #FFC107;");
+        Scene escena = new Scene(raiz, 350, 350);
+        
 
         escenario.setScene(escena);
 
@@ -133,14 +137,55 @@ public class RProfesor extends Application {
                 }
         });
         
-        HBox hbBtns = new HBox(20);
+        agenda.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        agenda.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                agenda.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        agenda.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                agenda.setEffect(null);
+            }
+        });
+        
+        cerrsesion.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow2 = new DropShadow();
+        shadow2.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        cerrsesion.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                cerrsesion.setEffect(shadow2);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        cerrsesion.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                cerrsesion.setEffect(null);
+            }
+        });
+        
+        agenda.setScaleX(.7);
+        agenda.setScaleY(.7);
+        cerrsesion.setScaleX(.7);
+        cerrsesion.setScaleY(.7);
+        
+        HBox hbBtns = new HBox(7);
         hbBtns.getChildren().addAll(agenda, cerrsesion);       
         hbBtns.setAlignment(Pos.CENTER);
         
         VBox vbDatos = new VBox(10);
-        vbDatos.getChildren().addAll(lblNombre, lblEco, lblCubo, hbBtns);
+        vbDatos.getChildren().addAll(lblNombre, lblEco, lblCubo);
         
-        raiz.getChildren().add(vbDatos);
+        raiz.getChildren().addAll(vbDatos, hbBtns);
         escenario.show();
     }
 

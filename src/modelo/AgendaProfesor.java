@@ -6,10 +6,13 @@ import javafx.application.Application;
 import javafx.beans.value.*;
 import javafx.collections.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import proyectoasesorias.Alumno;
@@ -822,10 +825,29 @@ public class AgendaProfesor extends Application{
             }
         });
         
+        btncerrar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        btncerrar.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                btncerrar.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        btncerrar.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                btncerrar.setEffect(null);
+            }
+        });
+        
         FlowPane pane = new FlowPane(30, 30);
+        pane.setStyle("-fx-background-color: #FFC107;");
         pane.setAlignment(Pos.CENTER);
         pane.getChildren().add(btncerrar);
-        
+        raizNodo.setStyle("-fx-background-color: #FFC107;");
         raizNodo.getChildren().addAll(encabezado, tvProyecto,pane);
         escenario.show();
     }
