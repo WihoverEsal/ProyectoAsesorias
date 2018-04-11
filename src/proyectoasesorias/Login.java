@@ -23,6 +23,7 @@ import static javafx.application.Application.launch;
 import javafx.event.*;
 import javafx.geometry.Pos;
 import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -181,6 +182,24 @@ public class Login extends Application {
         for (int i = 0; i < alUsuario.size(); i++){
             hsUsuarios.put(alUsuario.get(i).hashCode(), alUsuario.get(i));
         }*/
+        
+         btnIniciar.setStyle("-fx-font: 22 arial; -fx-base: #E91E63;");
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(javafx.scene.paint.Color.web("#E91E63"));
+        //Adding the shadow when the mouse cursor is on
+        btnIniciar.addEventHandler(MouseEvent.MOUSE_ENTERED, 
+            new EventHandler<MouseEvent>() {
+                @Override public void handle(MouseEvent e) {
+                btnIniciar.setEffect(shadow);
+                }
+        });
+        //Removing the shadow when the mouse cursor is off
+        btnIniciar.addEventHandler(MouseEvent.MOUSE_EXITED, 
+        new EventHandler<MouseEvent>() {
+            @Override public void handle(MouseEvent e) {
+                btnIniciar.setEffect(null);
+            }
+        });
                 
         btnIniciar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -244,6 +263,9 @@ public class Login extends Application {
                     //System.out.println("Ususario -> " + txtUsuario.getText() + " Password -> " + psfPass.getText());
             }
         });
+        
+       
+        
         Label lblsaltos =new Label("\n");
         vbAllHB.getChildren().addAll(hbInisesion, lblsaltos, hbUserImg, hbPassImg, hbBtns, lblRespuesta, lblOlvidar);
         //raiz.getChildren().addAll(lblIniciar,lblUsuario,txtUsuario,lblPass,psfPass,btnIniciar,btnRegistrarse,lblOlvidar);
