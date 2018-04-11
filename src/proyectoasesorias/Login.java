@@ -221,8 +221,7 @@ public class Login extends Application {
                                     if(usuario.getClavePass().equals(psfPass.getText()))
                                         al.start(escenario);
                                     else
-                                        lblRespuesta.setText("Verificar usuario y/o contraseña");
-                                        
+                                        lblRespuesta.setText("Verificar usuario y/o contraseña");                                    
                                 }else{
                                     if(usuario.getClavePass().equals(psfPass.getText()))
                                         rProf.start(escenario);
@@ -236,8 +235,7 @@ public class Login extends Application {
                         } catch (Exception ex) {
                             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    } else {
-                        //System.out.println("Verificar usuario y/o contraseña");
+                    } else {                        
                         lblRespuesta.setText("Verificar usuario y/o contraseña");
                     }
                 } else {
