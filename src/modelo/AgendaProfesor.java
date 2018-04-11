@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.beans.value.*;
 import javafx.collections.*;
@@ -27,7 +29,7 @@ public class AgendaProfesor extends Application{
     public AgendaProfesor(String cadena){
         profe = cadena;
         etiqueta = new Label(cadena);
-    }
+    }    
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -183,7 +185,7 @@ public class AgendaProfesor extends Application{
         Agenda agLizbet = new Agenda();
         agLizbet.addDia("Lunes");
         agLizbet.addDia("Miercoles");
-        agLizbet.addHora(new HoraAsesoria(true,3));            
+        agLizbet.addHora(new HoraAsesoria(true,3));
         //HASTA AQUÍ LA CREACIÓN DE AGENDAS
         
         FlowPane raizNodo = new FlowPane(10, 10); 
@@ -210,8 +212,8 @@ public class AgendaProfesor extends Application{
           //caso martha mora verifica que los horarios que agendamos coincidad con nuestro proyecto de entradas donde tenemos nuestros horarios
             case "Martha Mora Torres":                
                 for(int i = 0; i < agMarta.getDias().size(); i++){
-                    System.out.println(agMarta.getDias().size());
-                    System.out.println(agMarta.getDias().get(i));
+                    //System.out.println(agMarta.getDias().size());
+                    //System.out.println(agMarta.getDias().get(i));
                     switch(agMarta.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agMarta.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -234,8 +236,8 @@ public class AgendaProfesor extends Application{
                 //caso profe zaragoza hace lo mismo 
             case "Francisco Javier Zaragoza Martinez":                
                 for(int i = 0; i < agZaragoza.getDias().size(); i++){
-                    System.out.println(agZaragoza.getDias().size());
-                    System.out.println(agZaragoza.getDias().get(i));
+                    //System.out.println(agZaragoza.getDias().size());
+                    //System.out.println(agZaragoza.getDias().get(i));
                     switch(agZaragoza.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agZaragoza.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -255,8 +257,8 @@ public class AgendaProfesor extends Application{
                     }
                 }//esta es la primera parte de 1 a dos y media
                 for(int i = 0; i < agZaragoza2.getDias().size(); i++){
-                    System.out.println(agZaragoza2.getDias().size());
-                    System.out.println(agZaragoza2.getDias().get(i));
+                    //System.out.println(agZaragoza2.getDias().size());
+                    //System.out.println(agZaragoza2.getDias().get(i));
                     switch(agZaragoza2.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agZaragoza2.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -320,8 +322,8 @@ public class AgendaProfesor extends Application{
                 break;                
             case "Alejandro Cruz Sandoval":
                     for(int i = 0; i < agAlejandro.getDias().size(); i++){
-                    System.out.println(agAlejandro.getDias().size());
-                    System.out.println(agAlejandro.getDias().get(i));
+                    //System.out.println(agAlejandro.getDias().size());
+                    //System.out.println(agAlejandro.getDias().get(i));
                     switch(agAlejandro.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agAlejandro.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -341,8 +343,8 @@ public class AgendaProfesor extends Application{
                     }
                 }//esta es la primera parte de las 7 a 8:30 en el horario de excel dice a las 7:45 pero lo manejo con horas completas
                 for(int i = 0; i < agAlejandro2.getDias().size(); i++){
-                    System.out.println(agAlejandro2.getDias().size());
-                    System.out.println(agAlejandro2.getDias().get(i));
+                    //System.out.println(agAlejandro2.getDias().size());
+                    //System.out.println(agAlejandro2.getDias().get(i));
                     switch(agAlejandro2.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agAlejandro2.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -362,8 +364,8 @@ public class AgendaProfesor extends Application{
                     }
                 }//esta es la segunda parte de manejo horas completas es de 12 a 1 pero lo manejo de 11:30 a 13:00
                 for(int i = 0; i < agAlejandro3.getDias().size(); i++){
-                    System.out.println(agAlejandro3.getDias().size());
-                    System.out.println(agAlejandro3.getDias().get(i));
+                    //System.out.println(agAlejandro3.getDias().size());
+                    //System.out.println(agAlejandro3.getDias().get(i));
                     switch(agAlejandro3.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agAlejandro3.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -505,8 +507,8 @@ public class AgendaProfesor extends Application{
                 break;                
             case "Irma Fernanda Ardon Pulido":
                 for(int i = 0; i < agIrma.getDias().size(); i++){
-                    System.out.println(agIrma.getDias().size());
-                    System.out.println(agIrma.getDias().get(i));
+                    //System.out.println(agIrma.getDias().size());
+                    //System.out.println(agIrma.getDias().get(i));
                     switch(agIrma.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agIrma.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -526,8 +528,8 @@ public class AgendaProfesor extends Application{
                     }
                 }//aqui no hubo problema con los horarios
                 for(int i = 0; i < agIrma2.getDias().size(); i++){
-                    System.out.println(agIrma2.getDias().size());
-                    System.out.println(agIrma2.getDias().get(i));
+                    //System.out.println(agIrma2.getDias().size());
+                    //System.out.println(agIrma2.getDias().get(i));
                     switch(agIrma2.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agIrma2.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -547,8 +549,8 @@ public class AgendaProfesor extends Application{
                     }
                 }
                 for(int i = 0; i < agIrma3.getDias().size(); i++){
-                    System.out.println(agIrma3.getDias().size());
-                    System.out.println(agIrma3.getDias().get(i));
+                    //System.out.println(agIrma3.getDias().size());
+                    //System.out.println(agIrma3.getDias().get(i));
                     switch(agIrma3.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agIrma3.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -568,8 +570,8 @@ public class AgendaProfesor extends Application{
                     }
                 }
                 for(int i = 0; i < agIrma4.getDias().size(); i++){
-                    System.out.println(agIrma4.getDias().size());
-                    System.out.println(agIrma4.getDias().get(i));
+                    //System.out.println(agIrma4.getDias().size());
+                    //System.out.println(agIrma4.getDias().get(i));
                     switch(agIrma4.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agIrma4.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -589,8 +591,8 @@ public class AgendaProfesor extends Application{
                     }
                 }
                 for(int i = 0; i < agIrma5.getDias().size(); i++){
-                    System.out.println(agIrma5.getDias().size());
-                    System.out.println(agIrma5.getDias().get(i));
+                    //System.out.println(agIrma5.getDias().size());
+                    //System.out.println(agIrma5.getDias().get(i));
                     switch(agIrma5.getDias().get(i)){
                         case "Lunes":
                             projEntradas.get(agIrma5.getHoras().get(0).getIndiceHora()).setLunes("Asesoria");
@@ -712,7 +714,7 @@ public class AgendaProfesor extends Application{
                 }
                 break;
          //en esta parte las asesorias de los dos profes es de media hora de duracion pero las maneje igual como horas completas
-            case "Lizbeth Gallardo Lopez":
+            case "Lizbeth Gallardo López":
                 for(int i = 0; i < agLizbet.getDias().size(); i++){
                     switch(agLizbet.getDias().get(i)){
                         case "Lunes":
@@ -784,18 +786,29 @@ public class AgendaProfesor extends Application{
                     Number viejoVal, Number nuevoVal) {
                 
                 ObservableList<TablePosition> olRow = tvSelModelo.getSelectedCells();
-                //System.out.println(olRow.get(0).getRow() + ", " + olRow.get(0).getColumn());               
+                //System.out.println(olRow.get(0).getRow() + ", " + olRow.get(0).getColumn());                
+                //System.out.println( tvSelModelo.getSelectedCells().get(0).getTableColumn().getText() );
                 
-                //System.out.println( tvSelModelo.getSelectedCells().get(0).getTableColumn() );
+                String dia = tvSelModelo.getSelectedCells().get(0).getTableColumn().getText();
+                String hora = tvProyecto.getItems().get(olRow.get(0).getRow()).getHora();
+                System.out.println("hora: " + hora + " dia: " + dia);
+                
                 
                 TableColumn column = tvSelModelo.getSelectedCells().get(0).getTableColumn();
+                
                 System.out.println(column.getCellData(olRow.get(0).getRow()));
                 if( column.getCellData(olRow.get(0).getRow()).equals("Asesoria") ){
                     System.out.println("Enviar Notificacion");
+                    
+                    Confirmacion confirm = new Confirmacion(hora, dia, profe);
+                    try {
+                        confirm.start(escenario);
+                    } catch (Exception ex) {
+                        Logger.getLogger(AgendaProfesor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }else{
                     System.out.println("Selecciona un horario de asesoria valido");
-                }
-                
+                }                
                 
             }
         });

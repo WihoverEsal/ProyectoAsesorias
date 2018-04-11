@@ -7,7 +7,7 @@ package proyectoasesorias;
 
 /**
  *
- * @author Victor EstupiÃ±an
+ * @author Victor Estupiñan
  */
 import fachadabd.FachadaBD;
 import java.util.ArrayList;
@@ -121,13 +121,13 @@ public class Registrate extends Application {
         gdtop.add(mobnot, 1, 2);
 
         //label del password
-        Label pwd = new Label("ContraseÃ±a");
+        Label pwd = new Label("Contraseña");
         pwd.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         gdtop.add(pwd, 0, 3);
 
         //PASSWORD TEXTFIELD
         PasswordField pwdt = new PasswordField();
-        pwdt.setPromptText("ContraseÃ±a");
+        pwdt.setPromptText("Contraseña");
         gdtop.add(pwdt, 1, 3);
 
         //SUBMIT BUTTON HBOX

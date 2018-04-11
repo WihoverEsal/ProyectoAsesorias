@@ -71,9 +71,7 @@ public class Login extends Application {
     }       
 
     @Override
-    public void start(Stage escenario) throws Exception {
-        
-        
+    public void start(Stage escenario) throws Exception {                
         escenario.setTitle("Iniciar Sesion");
 
         FlowPane raiz = new FlowPane(10, 10);
